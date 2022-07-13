@@ -22,11 +22,8 @@ def setupServo():
 
 def setAngle(angle, servo):
   duty = angle / 18 + 2
-  GPIO.output(SERVO, True)
   servo.ChangeDutyCycle(duty)
   time.sleep(.05)
-  GPIO.output(SERVO, False)
-  servo.ChangeDutyCycle(0)
 
 def getDistance():
   GPIO.output(TRIG, True)
@@ -63,7 +60,6 @@ def changeDirection(distanceAndAngle):
   GPIO.output(MOTOR_RIGHT, True)
   print("moving farward")
 
-
 if __name__ == "__main__":
   try:
     setupBoard()
@@ -84,5 +80,5 @@ if __name__ == "__main__":
         changeDirection(minDistance)
         time.sleep(.1)
   finally:
-    servo.stop()
+    # servo.stop()
     GPIO.cleanup()
